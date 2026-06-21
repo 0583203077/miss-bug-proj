@@ -10,14 +10,13 @@ export const bugService = {
     getById,
     save,
     remove,
+    downloadPdf,
     getDefaultFilter
 }
 
 function query(filterBy) {
-
-    return axios.get(BASE_URL, {})
+    return axios.get(BASE_URL, { params: filterBy })
         .then(res => res.data)
-
     // return storageService.query(STORAGE_KEY)
     // .then(bugs => {
 
@@ -45,8 +44,13 @@ function remove(bugId) {
 }
 
 function save(bug) {
-return axios.get(BASE_URL + 'save', { params: bug })
+    return axios.get(BASE_URL + 'save', { params: bug })
         .then(res => res.data)
+}
+
+function downloadPdf(){
+    console.log(BASE_URL+'pdf')
+    return axios.get(BASE_URL+'pdf').then(res => res.data)
 }
 
 function _createBugs() {

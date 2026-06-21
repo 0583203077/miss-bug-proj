@@ -44,6 +44,11 @@ export function BugIndex() {
             .catch(err => showErrorMsg(`Cannot add bug`, err))
     }
 
+    function onDownloadPdf() {
+        console.log('downloadPdf')
+        bugService.downloadPdf()
+    }
+
     function onEditBug(bug) {
         const severity = +prompt('New severity?', bug.severity)
         const bugToSave = { ...bug, severity }
@@ -69,6 +74,7 @@ export function BugIndex() {
         <header>
             <h3>Bug List</h3>
             <button onClick={onAddBug}>Add Bug</button>
+            <button onClick={onDownloadPdf}>Download Pdf</button>
         </header>
 
         <BugList

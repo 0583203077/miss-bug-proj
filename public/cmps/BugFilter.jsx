@@ -25,7 +25,6 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
             default:
                 break
         }
-
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
