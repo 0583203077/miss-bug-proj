@@ -2,6 +2,8 @@ import fs from 'fs'
 import { utilService } from "./util.service.js";
 
 const bugs = utilService.readJsonFile('data/bug.json')
+const PAGE_SIZE = 3
+
 
 export const bugService = {
     query,
@@ -10,8 +12,47 @@ export const bugService = {
     save
 }
 
-function query() {
-    return Promise.resolve(bugs)
+function query(filterBy = {}) {
+    console.log(bugs)
+    let bugsToDisplay = bugs
+    if (filterBy.txt) {
+        const regExp = new RegExp(filterBy.txt, 'i')
+        bugsToDisplay = bugsToDisplay.filter(bug => regExp.test(bug.title))
+    }
+
+    if (filterBy.minSeverity) {
+        bugsToDisplay = bugsToDisplay.filter(bug => bug.severity >= filterBy.minSeverity)
+    }
+
+    if (filterBy.labels && filterBy.labels.length) {
+        bugsToDisplay = bugsToDisplay.filter(bug =>
+            bug.labels.some(label => filterBy.labels.includes(label))
+        )
+    }
+
+    if (filterBy.sortBy) {
+        const sortDir = filterBy.sortDir || 1
+
+        bugsToDisplay.sort((a, b) => {
+            const valA = a[filterBy.sortBy]
+            const valB = b[filterBy.sortBy]
+
+            if (typeof valA === 'string') {
+                return valA.localeCompare(valB) * sortDir
+            }
+
+            return (valA - valB) * sortDir
+        })
+    }
+
+    if (filterBy.pageIdx !== undefined) {
+        const startIdx = filterBy.pageIdx * PAGE_SIZE // 0,3,6,9
+        bugsToDisplay = bugsToDisplay.slice(startIdx, startIdx + PAGE_SIZE)
+    }
+    console.log(filterBy)
+    console.log(bugsToDisplay)
+
+    return Promise.resolve(bugsToDisplay)
 }
 
 function getById(bugId) {
