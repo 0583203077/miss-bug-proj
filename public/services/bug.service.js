@@ -39,18 +39,21 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-    return axios.get(BASE_URL + bugId + '/remove')
+    return axios.delete(BASE_URL + bugId)
         .then(res => res.data)
 }
 
 function save(bug) {
-    return axios.get(BASE_URL + 'save', { params: bug })
-        .then(res => res.data)
+    if (bug._id) {
+        return axios.put(BASE_URL + bug._id, bug).then(res => res.data)
+    } else {
+        return axios.post(BASE_URL, bug).then(res => res.data)
+    }
 }
 
-function downloadPdf(){
-    console.log(BASE_URL+'pdf')
-    return axios.get(BASE_URL+'pdf').then(res => res.data)
+function downloadPdf() {
+    console.log(BASE_URL + 'pdf')
+    return axios.get(BASE_URL + 'pdf').then(res => res.data)
 }
 
 function _createBugs() {
@@ -83,5 +86,14 @@ function _createBugs() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', minSeverity: 0 }
+    return {
+        txt: '',
+        minSeverity: '',
+        labels: '',
+        pageIdx: 0,
+    }
+}
+
+function getDefaultSortBy() {
+    return { type: '', desc: 1 }
 }
