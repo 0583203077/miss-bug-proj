@@ -1,5 +1,52 @@
 [
     {
+        "_id": "odOKW",
+        "title": "Communication failure",
+        "description": "Unable to use mobile data",
+        "severity": 2,
+        "createdAt": 1782077231662,
+        "labels": [
+            "frontend",
+            "bug"
+        ]
+    },
+    {
+        "_id": "IwMVW",
+        "title": "Vehicle details are not updated after edit",
+        "description": "After editing a vehicle and clicking Save, the updated details are not displayed until the page is refreshed.",
+        "severity": 4,
+        "createdAt": 1782000000000,
+        "labels": [
+            "frontend",
+            "bug",
+            "ui"
+        ]
+    },
+    {
+        "_id": "UQwSL",
+        "title": "Network error message is not displayed",
+        "description": "When the API request fails due to connectivity issues, the user receives no feedback and the page appears frozen.",
+        "severity": 3,
+        "createdAt": 1781159553449,
+        "labels": [
+            "network",
+            "ux",
+            "error-handling"
+        ]
+    },
+    {
+        "_id": "6Xiq8",
+        "title": "Incorrect mileage validation",
+        "description": "The system accepts negative mileage values when editing an existing vehicle.",
+        "severity": 3,
+        "createdAt": 1781039776498,
+        "labels": [
+            "validation",
+            "backend",
+            "data-integrity"
+        ]
+    },
+    {
         "_id": "DscKi",
         "title": "Vehicle details page crashes on refresh",
         "description": "Refreshing the vehicle details page results in a blank screen due to an undefined route parameter.",
@@ -21,42 +68,6 @@
             "backend",
             "high-priority",
             "data-loss"
-        ]
-    },
-    {
-        "_id": "7zVoI",
-        "title": "Add vehicle button creates duplicate entries",
-        "description": "Clicking the Add Vehicle button multiple times quickly creates duplicate records in the database.",
-        "severity": 3,
-        "createdAt": 1542107359454,
-        "labels": [
-            "frontend",
-            "bug",
-            "ui"
-        ]
-    },
-    {
-        "_id": "6Xiq8",
-        "title": "Incorrect mileage validation",
-        "description": "The system accepts negative mileage values when editing an existing vehicle.",
-        "severity": 3,
-        "createdAt": 1781039776498,
-        "labels": [
-            "validation",
-            "backend",
-            "data-integrity"
-        ]
-    },
-    {
-        "_id": "UQwSL",
-        "title": "Network error message is not displayed",
-        "description": "When the API request fails due to connectivity issues, the user receives no feedback and the page appears frozen.",
-        "severity": 3,
-        "createdAt": 1781159553449,
-        "labels": [
-            "network",
-            "ux",
-            "error-handling"
         ]
     }
 ]
