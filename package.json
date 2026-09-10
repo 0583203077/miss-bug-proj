@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "cryptr": "^6.4.0",
     "express": "^5.1.0",
     "https": "^1.0.0",
     "pdfkit-table": "^0.2.11"

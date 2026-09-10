@@ -1,4 +1,7 @@
 import { bugService } from './services/bug.service.js'
+import { userService } from './services/user.service.js'
+import { authService } from './services/auth.service.js'
+
 import cookieParser from 'cookie-parser'
 
 import express from 'express'
@@ -108,6 +111,41 @@ app.put('/api/bug/:bugId', (req, res) => {
         .catch(err => {
             res.status(400).send('Cannot save bug')
         })
+})
+
+//* Auth API
+app.post('/api/auth/login', (req, res) => {
+    const { username, password } = req.body
+    authService.checkLogin({ username, password })
+        .then(user => {
+            const loginToken = authService.getLoginToken(user)
+            res.cookie('loginToken', loginToken)
+            res.send(user)
+        })
+        .catch(() => res.status(404).send('Invalid Credentials'))
+})
+
+app.post('/api/auth/signup', (req, res) => {
+    const { username, password, fullname } = req.body
+    userService.add({ username, password, fullname })
+        .then(user => {
+            if (user) {
+                const loginToken = authService.getLoginToken(user)
+                res.cookie('loginToken', loginToken)
+                res.send(user)
+            } else {
+                res.status(400).send('Cannot signup')
+            }
+        })
+        .catch(err => {
+            console.log('err:', err)
+            res.status(400).send('Username taken.')
+        })
+})
+
+app.post('/api/auth/logout', (req, res) => {
+    res.clearCookie('loginToken')
+    res.send('logged-out!')
 })
 
 
