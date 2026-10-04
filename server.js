@@ -81,6 +81,8 @@ app.get('/api/bug/pdf', async (req, res) => {
 
 //* Create
 app.post('/api/bug', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`Can't add bug`)
     const bugToSave = {
         _id: req.body._id,
         title: req.body.title,
@@ -89,7 +91,7 @@ app.post('/api/bug', (req, res) => {
         createdAt: req.body.createdAt,
         labels: req.body.labels
     }
-    bugService.save(bugToSave).then(bug => res.send(bug))
+    bugService.save(bugToSave,loggedinUser).then(bug => res.send(bug))
         .catch(err =>
             res.status(400).send('Cannot save bug')
         )
@@ -97,16 +99,18 @@ app.post('/api/bug', (req, res) => {
 
 //* Edit
 app.put('/api/bug/:bugId', (req, res) => {
-
+const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`Can't update car`)
     const bugToSave = {
         _id: req.body._id,
         title: req.body.title,
         description: req.body.description,
         severity: req.body.severity,
         createdAt: req.body.createdAt,
-        labels: req.body.labels
+        labels: req.body.labels,
+        owner:req.body.owner
     }
-    bugService.save(bugToSave)
+    bugService.save(bugToSave,loggedinUser)
         .then(savedBug => res.send(savedBug))
         .catch(err => {
             res.status(400).send('Cannot save bug')
@@ -126,6 +130,7 @@ app.post('/api/auth/login', (req, res) => {
 })
 
 app.post('/api/auth/signup', (req, res) => {
+    console.log('BODY:', req.body)
     const { username, password, fullname } = req.body
     userService.add({ username, password, fullname })
         .then(user => {
