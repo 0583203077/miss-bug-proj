@@ -5,6 +5,7 @@ import { authService } from './services/auth.service.js'
 import cookieParser from 'cookie-parser'
 
 import express from 'express'
+import path from 'path'
 import { utilService } from './services/util.service.js'
 import PDFDocument from 'pdfkit-table'
 import fs from 'fs'
@@ -24,15 +25,18 @@ app.get('/', (req, res) => res.send('Hello misheo'))
 //* Read
 app.get('/api/bug', (req, res) => {
     const filterBy = {
-    txt: req.query.txt || '',
-    minSeverity: +req.query.minSeverity || 0,
-    pageIdx: req.query.pageIdx !== undefined ? +req.query.pageIdx : undefined,
-    sortBy: req.query.sortBy || '',
-    sortDir: +req.query.sortDir || 1,
-    labels: req.query.labels ? req.query.labels.split(',') : []
-}
-console.log(filterBy)
-    bugService.query(filterBy)
+        txt: req.query.txt || '',
+        minSeverity: +req.query.minSeverity || 0,
+        pageIdx: req.query.pageIdx !== undefined ? +req.query.pageIdx : undefined,
+        labels: req.query.labels ? req.query.labels : [],
+        owner: req.query.owner || ''
+    }
+    const sortBy = {
+        type: req.query.type || '',
+        dir: +req.query.desc || 1
+    }
+
+    bugService.query(filterBy, sortBy)
         .then(bugs => res.send(bugs))
         .catch(err => {
             res.status(400).send('Cannot load bugs')
@@ -63,11 +67,14 @@ app.get('/api/bug/:bugId', (req, res) => {
 
 //* Remove/Delete
 app.delete('/api/bug/:bugId', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`Cannot remove bug`)
     const { bugId } = req.params
-    bugService.remove(bugId)
+    bugService.remove(bugId, loggedinUser)
         .then(() => res.send(`Bug removed - ${bugId}`))
         .catch(err => {
             res.status(400).send('Cannot remove bug')
+            console.log(err)
         })
 })
 
@@ -91,7 +98,7 @@ app.post('/api/bug', (req, res) => {
         createdAt: req.body.createdAt,
         labels: req.body.labels
     }
-    bugService.save(bugToSave,loggedinUser).then(bug => res.send(bug))
+    bugService.save(bugToSave, loggedinUser).then(bug => res.send(bug))
         .catch(err =>
             res.status(400).send('Cannot save bug')
         )
@@ -99,7 +106,7 @@ app.post('/api/bug', (req, res) => {
 
 //* Edit
 app.put('/api/bug/:bugId', (req, res) => {
-const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
     if (!loggedinUser) return res.status(401).send(`Can't update car`)
     const bugToSave = {
         _id: req.body._id,
@@ -108,9 +115,9 @@ const loggedinUser = authService.validateToken(req.cookies.loginToken)
         severity: req.body.severity,
         createdAt: req.body.createdAt,
         labels: req.body.labels,
-        owner:req.body.owner
+        owner: req.body.owner
     }
-    bugService.save(bugToSave,loggedinUser)
+    bugService.save(bugToSave, loggedinUser)
         .then(savedBug => res.send(savedBug))
         .catch(err => {
             res.status(400).send('Cannot save bug')
@@ -153,6 +160,38 @@ app.post('/api/auth/logout', (req, res) => {
     res.send('logged-out!')
 })
 
+//* User API
+
+app.get('/api/user', (req, res) => {
+
+    userService.query()
+        .then(user => res.send(user))
+        .catch(err => {
+            res.status(400).send('Cannot load users')
+        })
+})
+
+app.get('/api/user/:userId', (req, res) => {
+    const { userId } = req.params
+
+    userService.getById(userId)
+        .then(user => res.send(user))
+        .catch(err => {
+            res.status(400).send('Cannot load user')
+        })
+})
+
+app.delete('/api/user/:userId', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send(`Cannot remove user`)
+    const { userId } = req.params
+    userService.remove(userId)
+        .then(() => res.send(`Bug removed - ${userId}`))
+        .catch(err => {
+            res.status(400).send('Cannot remove user')
+            console.log(err)
+        })
+})
 
 app.get('/*all', (req, res) => {
     res.sendFile(path.resolve('public/index.html'))

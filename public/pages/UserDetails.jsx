@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 const { useParams, useNavigate } = ReactRouterDOM
 
 import { userService } from "../services/user.service.js"
+import { bugService } from "../services/bug.service.js"
 import { BugList } from '../cmps/BugList.jsx'
 
 
@@ -14,12 +15,16 @@ export function UserDetails() {
 
     useEffect(() => {
         loadUser()
+        
         loadBugs()
     }, [params.userId])
 
     function loadUser() {
         userService.getById(params.userId)
-            .then(setUser)
+            .then(user=>{
+                setUser(user)
+                console.log(user,params.userId)
+            })
             .catch(err => {
                 console.log('err:', err)
                 navigate('/')
@@ -28,8 +33,9 @@ export function UserDetails() {
     }
 
     function loadBugs() {
-        bugService.query({ createdBy: params.userId })
-            .then(setBugs)
+        bugService.query({ owner: params.userId })
+            .then(({bugs})=>
+            setBugs(bugs))
             .catch(err => {
                 console.log('err:', err)
             })
@@ -49,9 +55,10 @@ export function UserDetails() {
             </pre>
             <BugList
                         bugs={bugs}
-                        onRemoveBug={onRemoveBug}
-                        onEditBug={onEditBug} />
+                         />
             <button onClick={onBack} >Back</button>
         </section>
     )
 }
+//onRemoveBug={onRemoveBug}
+                        // onEditBug={onEditBug} 

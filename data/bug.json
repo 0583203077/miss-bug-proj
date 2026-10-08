@@ -6,8 +6,8 @@
         "severity": 2,
         "createdAt": 1782077231662,
         "labels": [
-            "frontend",
-            "bug"
+            "critical",
+            "famous"
         ]
     },
     {
@@ -17,9 +17,8 @@
         "severity": 4,
         "createdAt": 1782000000000,
         "labels": [
-            "frontend",
-            "bug",
-            "ui"
+            "famous",
+            "high"
         ]
     },
     {
@@ -29,8 +28,8 @@
         "severity": 3,
         "createdAt": 1781159553449,
         "labels": [
-            "network",
-            "ux",
+            "high",
+            "popular",
             "error-handling"
         ]
     },
@@ -53,7 +52,7 @@
         "severity": 2,
         "createdAt": 1779952852516,
         "labels": [
-            "frontend",
+            "popular",
             "routing",
             "react"
         ]
@@ -69,5 +68,17 @@
             "high-priority",
             "data-loss"
         ]
+    },
+    {
+        "_id": "A4MNT",
+        "title": "Bug 2000",
+        "description": "no detailes",
+        "severity": 3,
+        "createdAt": 1791361983262,
+        "owner": {
+            "username": "Rachel",
+            "fullname": "Feld",
+            "_id": "YyelK"
+        }
     }
 ]

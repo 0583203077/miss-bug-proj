@@ -1,3 +1,5 @@
+const { useState,useEffect } = React
+
 import { userService } from "../services/user.service.js";
 
 export function UserIndex() {
@@ -9,9 +11,10 @@ export function UserIndex() {
     }, [])
 
     function loadUsers() {
-        userService.getUsers()
+        userService.query()
             .then(users => {
                 setUsers(users)
+                console.log(users)
             })
             .catch(err => {
                 console.log('Cannot load users', err)
@@ -36,7 +39,7 @@ export function UserIndex() {
 
             {users.map(user => (
                 <div key={user._id}>
-                    <span>{user.username}</span>
+                    <span>{user.fullname}</span>
                     <button onClick={() => onRemoveUser(user._id)}>
                         Delete
                     </button>

@@ -14,6 +14,18 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
         const field = target.name
         let value = target.value
 
+        if (target.type === 'checkbox') {
+        setFilterByToEdit(prevFilter => ({
+            ...prevFilter,
+            labels: target.checked
+                ? [...prevFilter.labels, value]
+                : prevFilter.labels.filter(label => label !== value)
+        }))
+
+        return
+    }
+
+
         switch (target.type) {
             case 'number':
             case 'range':
@@ -83,8 +95,8 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
                             <input
                                 type="checkbox"
                                 value={label}
-                                checked={selectedLabels.includes(label)}
-                                onChange={handleLabelChange}
+                                checked={labels.includes(label)}
+                                onChange={handleChange}
                                 id={`checkbox-${label}`}
                             />
                             <label htmlFor={`checkbox-${label}`}>{label}</label>

@@ -11,7 +11,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
     function isAllowed(bug) {
         if (!loggedInUser) return false
         if (loggedInUser.isAdmin ||
-            loggedInUser._id === bug.owner._id) {
+            bug.owner && loggedInUser._id === bug.owner._id) {
             return true
         }
         return false

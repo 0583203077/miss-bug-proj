@@ -19,11 +19,13 @@ export function BugIndex() {
 
     function loadBugs() {
         bugService.query(filterBy, sortBy)
-            .then(({ bugs, totalPageSize }) => {
+            .then(({bugs,totalPageSize}) => {
                 setTotalPageSize(totalPageSize)
                 setBugs(bugs)
+                console.log("OOO",bugs)
             })
             .catch(err => showErrorMsg(`Couldn't load bugs - ${err}`))
+            console.log(sortBy)
     }
 
     function onRemoveBug(bugId) {

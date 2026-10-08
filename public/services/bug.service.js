@@ -11,26 +11,16 @@ export const bugService = {
     save,
     remove,
     downloadPdf,
-    getDefaultFilter
+    getDefaultFilter,
+    getDefaultSortBy
+
 }
 
-function query(filterBy) {
-    return axios.get(BASE_URL, { params: filterBy })
+function query(filterBy,sortBy) {
+  const filterSort = { ...filterBy, ...sortBy }
+    console.log(filterSort)
+    return axios.get(BASE_URL, { params: filterSort })
         .then(res => res.data)
-    // return storageService.query(STORAGE_KEY)
-    // .then(bugs => {
-
-    //     if (filterBy.txt) {
-    //         const regExp = new RegExp(filterBy.txt, 'i')
-    //         bugs = bugs.filter(bug => regExp.test(bug.title))
-    //     }
-
-    //     if (filterBy.minSeverity) {
-    //         bugs = bugs.filter(bug => bug.severity >= filterBy.minSeverity)
-    //     }
-
-    //     return bugs
-    // })
 }
 
 function getById(bugId) {
@@ -89,7 +79,7 @@ function getDefaultFilter() {
     return {
         txt: '',
         minSeverity: '',
-        labels: '',
+        labels: [],
         pageIdx: 0,
     }
 }
