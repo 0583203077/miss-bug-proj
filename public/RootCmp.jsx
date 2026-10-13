@@ -18,22 +18,20 @@ import { UserIndex } from './pages/UserIndex.jsx'
 
 
 export function App() {
-    const [loggedinUser, setLoggedinUser] = useState(userService.getLoggedinUser())
 
     return <Router>
         <div className="app-wrapper">
             <UserMsg />
-            <AppHeader loggedinUser={loggedinUser} setLoggedinUser={setLoggedinUser} />
+            <AppHeader  />
             <main className="container">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/bug" element={<BugIndex />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />
-                    <Route path="/auth" element={<LoginSignup setLoggedinUser={setLoggedinUser} />} />
-
                     <Route path="/user/:userId" element={<UserDetails />} />
-                    <Route path="/user" element={<UserIndex />} />
+                    <Route path="/admin" element={<UserIndex />} />
+
                 </Routes>
             </main>
             <AppFooter />
