@@ -1,29 +1,47 @@
 .bug-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1em;
 
+    margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.bug-list li {
+.bug-list > li {
     display: flex;
     flex-direction: column;
     gap: 1em;
 
-    padding: .7em;
-    background-color: var(--bg1);
-    border-radius: .2em;
+    padding: 1em;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform .2s;
+}
 
-    color: whitesmoke;
+.bug-list > li:hover {
+    transform: translateY(-3px);
 }
 
 .bug-list .actions {
     display: flex;
     gap: .3em;
+    margin-block-start: auto;
 }
 
 .bug-list .actions button:last-child {
     margin-inline-start: auto;
+}
+
+.empty-state {
+    padding: 2em;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.empty-state img {
+    width: 120px;
+    opacity: .5;
 }

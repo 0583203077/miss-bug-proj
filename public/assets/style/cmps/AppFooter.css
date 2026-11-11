@@ -1,7 +1,8 @@
 footer {
-    margin: 1em 0 0;
+    margin-block-start: 1em;
     padding: 1em;
+    border-block-start: 1px solid var(--border);
     text-align: center;
-    background-color: var(--gray1);
-    color: whitesmoke;
+    font-size: .85rem;
+    color: var(--text-muted);
 }

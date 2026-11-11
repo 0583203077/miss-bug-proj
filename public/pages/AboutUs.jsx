@@ -1,7 +1,10 @@
 export function AboutUs() {
     return <section className="about-us">
-        <h2>About Us</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni aperiam quo veniam velit dolor reprehenderit, laudantium consequatur neque numquam labore quae. Accusamus libero perferendis ducimus? Alias unde hic quisquam doloremque.</p>
-        <img src="assets/img/miss-bug.png" alt="" />
+        <div className="about-txt">
+            <h2>About Us</h2>
+            <p>Miss Bug is a small bug tracking app, built as a full-stack learning project with a Node.js and Express server and a React frontend.</p>
+            <p>You can report bugs, filter and sort them, and manage your own bugs after logging in.</p>
+        </div>
+        <img src="assets/img/miss-bug.png" alt="Miss Bug the ladybug" />
     </section>
 }

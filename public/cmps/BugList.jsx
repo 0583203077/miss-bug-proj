@@ -17,17 +17,21 @@ export function BugList({ bugs, onRemoveBug, onEditBug }) {
         return false
     }
 
-    if (!bugs) return <div>Loading...</div>
+    if (!bugs) return <div className="loading">Loading...</div>
+    if (!bugs.length) return <div className="empty-state">
+        <img src="assets/img/miss-bug.png" alt="" />
+        <p>No bugs to show</p>
+    </div>
     return <ul className="bug-list">
         {bugs.map(bug => (
             <li key={bug._id}>
                 <BugPreview bug={bug} />
                 <section className="actions">
-                    <button><Link to={`/bug/${bug._id}`}>Details</Link></button>
+                    <Link className="btn-link" to={`/bug/${bug._id}`}>Details</Link>
                     {isAllowed(bug)&&
                     <Fragment>
                         <button onClick={() => onEditBug(bug)}>Edit</button>
-                        <button onClick={() => onRemoveBug(bug._id)}>x</button>
+                        <button className="btn-danger" onClick={() => onRemoveBug(bug._id)}>x</button>
                     </Fragment>}
 
 

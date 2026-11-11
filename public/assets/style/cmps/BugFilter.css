@@ -1,21 +1,14 @@
-/* .bug-filter {
-    background-color: var(--gray2);
-    padding: 1em;
+.bug-filter {
+    margin-block-end: 1em;
+    padding: 1.2em;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
 .bug-filter h2 {
-    margin-bottom: .5em;
-}
-
-.bug-filter label {
-    margin-inline-start: 1em;
-} */
-
-.bug-filter {
-    background-color: #f5f5f5;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
 .bug-filter form {
@@ -31,13 +24,21 @@
     gap: 0.3rem;
 }
 
-.bug-filter label {
+.bug-filter .field label {
+    font-size: .9rem;
     font-weight: 600;
 }
 
-.bug-filter input,
-.bug-filter select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.bug-filter .label-selector {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5em 1.2em;
+}
+
+.bug-filter .label-selector div {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+    font-size: .9rem;
 }

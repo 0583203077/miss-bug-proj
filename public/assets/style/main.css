@@ -7,11 +7,15 @@
 @import './cmps/AboutUs.css';
 @import './cmps/BugIndex.css';
 @import './cmps/BugDetails.css';
+@import './cmps/UserIndex.css';
+@import './cmps/UserDetails.css';
 
 @import './cmps/AppHeader.css';
 @import './cmps/AppFooter.css';
+@import './cmps/LoginSignup.css';
 @import './cmps/UserMsg.css';
 
 @import './cmps/BugList.css';
 @import './cmps/BugFilter.css';
+@import './cmps/BugSort.css';
 @import './cmps/BugPreview.css';

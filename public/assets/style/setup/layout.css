@@ -3,8 +3,8 @@
     --max-width: 900px;
 
     display: grid;
-    grid-template-columns: 
-        minmax(var(--min-padding), 1fr) 
+    grid-template-columns:
+        minmax(var(--min-padding), 1fr)
         minmax(auto, var(--max-width))
         minmax(var(--min-padding), 1fr);
 }
@@ -28,5 +28,21 @@
 }
 
 .container {
-    padding: 1em;
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    padding: 2em 1em;
+}
+
+/* Helpers */
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
 }

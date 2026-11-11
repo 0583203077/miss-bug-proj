@@ -1,0 +1,25 @@
+.user-details .profile-card {
+    margin-block-end: 1.5em;
+    padding: 1.5em;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.user-details .profile-card h2 {
+    margin-block-end: .2em;
+}
+
+.user-details .profile-card p {
+    margin-block-end: .5em;
+    color: var(--text-muted);
+}
+
+.user-details h3 {
+    margin-block-end: .8em;
+}
+
+.user-details > button {
+    margin-block-start: 1.5em;
+}

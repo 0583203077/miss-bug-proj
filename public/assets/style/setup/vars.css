@@ -1,16 +1,19 @@
 :root {
-    --bg1: darkcyan;
-    --bg2: rgb(50, 165, 204);
-    --bg3: darkmagenta;
-    
-    --color1: aliceblue;
-    --color2: lightblue;
-    --color3: gold;
-    --color4: goldenrod;
-    
-    --gray1: #444;
-    --gray2: lightgray;
-    
-    --success: green;
-    --danger: orangered;
+    --bg: #faf7f2;
+    --surface: #ffffff;
+    --border: #e7e1d7;
+
+    --text: #2d2a32;
+    --text-muted: #6f6b76;
+
+    --primary: #d64545;
+    --primary-dark: #b83535;
+    --primary-light: #fdecec;
+
+    --success: #2e9e6b;
+    --warning: #c98a0c;
+    --danger: #d64545;
+
+    --radius: 10px;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }

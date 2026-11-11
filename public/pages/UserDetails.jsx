@@ -45,14 +45,16 @@ export function UserDetails() {
         navigate('/')
     }
 
-    if (!user) return <div>Loading...</div>
+    if (!user) return <div className="loading">Loading...</div>
 
     return (
         <section className="user-details">
-            <h1>User {user.fullname}</h1>
-            <pre>
-                {JSON.stringify(user, null, 4)}
-            </pre>
+            <div className="profile-card">
+                <h2>{user.fullname}</h2>
+                <p>@{user.username}</p>
+                {user.isAdmin && <span className="label">Admin</span>}
+            </div>
+            <h3>Bugs</h3>
             <BugList
                         bugs={bugs}
                          />

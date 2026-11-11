@@ -50,7 +50,7 @@ export function LoginForm({ onLogin, isSignup }) {
           required
         />
       )}
-      <button className="btn">{isSignup ? 'Signup' : 'Login'}</button>
+      <button className="btn btn-primary">{isSignup ? 'Signup' : 'Login'}</button>
     </form>
   )
 }

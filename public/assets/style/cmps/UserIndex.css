@@ -1,0 +1,17 @@
+.user-index {
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+.user-index .user-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+
+    margin-block-end: .6em;
+    padding: .7em 1em;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}

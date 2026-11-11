@@ -34,13 +34,13 @@ export function UserIndex() {
     }
 
     return (
-        <section>
+        <section className="user-index">
             <h2>Users</h2>
 
             {users.map(user => (
-                <div key={user._id}>
+                <div className="user-row" key={user._id}>
                     <span>{user.fullname}</span>
-                    <button onClick={() => onRemoveUser(user._id)}>
+                    <button className="btn-danger" onClick={() => onRemoveUser(user._id)}>
                         Delete
                     </button>
                 </div>

@@ -27,7 +27,7 @@ export function BugDetails() {
             </div>
         }
         <hr />
-        <Link to="/bug">Back to List</Link>
+        <Link className="btn-link" to="/bug">Back to List</Link>
     </div>
 
 }

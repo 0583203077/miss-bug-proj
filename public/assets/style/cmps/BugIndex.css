@@ -1,8 +1,23 @@
 .bug-index header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: .5em;
+    margin-block-end: 1em;
+}
 
-    padding-block: 1em;
-    border-block-end: 1px solid lightgray;
+.bug-index header h2 {
+    margin: 0;
+}
+
+.paging {
+    align-items: center;
+    justify-content: center;
+    gap: .8em;
+    margin-block-start: 1.5em;
+}
+
+.paging span {
+    font-weight: 600;
 }

@@ -1,0 +1,16 @@
+.bug-sort {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1em;
+    margin-block-end: 1em;
+}
+
+.bug-sort label {
+    display: flex;
+    align-items: center;
+    gap: .4em;
+    font-size: .9rem;
+    color: var(--text-muted);
+}

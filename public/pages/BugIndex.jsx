@@ -90,10 +90,22 @@ export function BugIndex() {
         }))
     }
 
-    return <section className="bug-index main-content">
+    return <section className="bug-index">
+        <header>
+            <h2>Bugs</h2>
+            <div>
+                <button className="btn-primary" onClick={onAddBug}>Add Bug</button>
+                <button onClick={onDownloadPdf}>Download Pdf</button>
+            </div>
+        </header>
 
         <BugFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <BugSort onSetSort={onSetSort} sortBy={sortBy} />
+        <BugSort onSetSort={onSetSort} sortBy={sortBy} />
+
+        <BugList
+            bugs={bugs}
+            onRemoveBug={onRemoveBug}
+            onEditBug={onEditBug} />
 
         <div className="paging flex">
             <button
@@ -115,15 +127,5 @@ export function BugIndex() {
                 Next
             </button>
         </div>
-        <header>
-            <h3>Bug List</h3>
-            <button onClick={onAddBug}>Add Bug</button>
-            <button onClick={onDownloadPdf}>Download Pdf</button>
-        </header>
-
-        <BugList
-            bugs={bugs}
-            onRemoveBug={onRemoveBug}
-            onEditBug={onEditBug} />
     </section>
 }

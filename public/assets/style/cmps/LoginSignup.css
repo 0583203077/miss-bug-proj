@@ -1,0 +1,43 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .3em;
+}
+
+.login form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: .4em;
+}
+
+.login input {
+    width: 150px;
+}
+
+.login .btns a {
+    font-size: .85rem;
+    color: var(--primary-dark);
+}
+
+@media (max-width: 600px) {
+    .login {
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .login form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .login input {
+        width: 100%;
+    }
+
+    .login .btns {
+        text-align: center;
+    }
+}
